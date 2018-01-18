@@ -8,6 +8,10 @@
 ## Main data source: https://en.wikipedia.org/wiki/List_of_serial_killers_in_the_United_States
 
 
+#-------#
+# Setup #
+#-------#
+
 # Install and load pacman if not already installed
 if (!require("pacman")) install.packages("pacman")
 library(pacman)
