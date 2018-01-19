@@ -60,7 +60,7 @@ tbl5 <- url %>% read_html() %>%
   html_table(fill = TRUE)
 
 tbl5 <- data.frame(tbl5)
-colnames(tbl5) = names(tbl1)
+colnames(tbl5) <- names(tbl1)
 meds <- tbl5[-1, ] 
 
 
@@ -105,7 +105,7 @@ meds %<>% mutate(Country = gsub("United States", "United States of America", Cou
 #-------------------#
 
 # Google Maps API
-apiKey <- "[INSERT OWN API HERE]"
+apiKey <- "[INSERT OWN KEY HERE]"
 
 # Adapted function to extract coordinates
 getGeoCoord <- function(loc, apiKey) {
