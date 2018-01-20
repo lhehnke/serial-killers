@@ -37,7 +37,7 @@ The script covers
 * scraping a wikipedia table containing US states and extracting information on the killers' location from strings
 * predicting the killers' sex based on their given names using *gender* and *genderdata*
 * scraping a wikipedia table containing causes of death and extracting information on the killers' causes of death from strings
-* visualizing the killers' causes of death, number of victims, and sex with *ggplot2*
+* visualizing the killers' causes of death, number of victims, and sex with *ggplot2* 
 * mapping the killers' locations with *ggplot2*
 
 using the example of serial killers in the US. 
