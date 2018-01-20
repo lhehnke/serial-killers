@@ -115,15 +115,15 @@ killers %<>%
 # Clean victims_proven
 ## Note: Code transform "[number of victims]+" to "[number of victims]". 
 killers %<>% 
-  mutate(victims_proven = gsub("[^0-9\\-]", "", victims_proven)) %>%
-  mutate(victims_proven = gsub("\\[.*?\\]", "", victims_proven)) 
+  mutate(victims_proven = gsub("\\[.*?\\]", "", victims_proven)) %>%
+  mutate(victims_proven = gsub("[^0-9\\-]", "", victims_proven)) 
 killers$victims_proven <- as.numeric(killers$victims_proven)
 
 # Clean victims_suspected 
 killers %<>% 
+  mutate(victims_suspected = gsub("\\[.*?\\]", "", victims_suspected)) %>% 
   mutate(victims_suspected = gsub("bis", "–", victims_suspected)) %>% 
-  mutate(victims_suspected = gsub("mindestens", "at least", victims_suspected)) %>% 
-  mutate(victims_suspected = gsub("\\[.*?\\]", "", victims_suspected))
+  mutate(victims_suspected = gsub("mindestens", "at least", victims_suspected)) 
 
 # Split name to given name and surname
 killers_name <- colsplit(killers$name," ", c("given_name", "surname"))
@@ -149,7 +149,7 @@ killers <- killers[order(killers$name), ]
 #-------------------#
 
 # Google Maps key
-apiKey <- "[INSERT OWN KEY HERE]"
+apiKey <- "AIzaSyDsSac4o7gNpwCsMyNycGZOdmsfys4fo2E" # [INSERT OWN KEY HERE]
 
 # Adapted function to extract coordinates
 getGeoCoord <- function(loc, apiKey) {
@@ -205,12 +205,27 @@ ggplot(killers_victims, aes(victims_proven, percentage)) +
   labs(x = "Number of victims", y = "Count", title = "Number of victims", subtitle = "Serial killers worldwide") +
   ylim(0, 30) + xlim(0, 150)
 
-# Plot number of victims by sex
-## Note: Removes one case with > 150 victims for aesthetic reasons.
+# Plot number of victims by killers' sex
 ggplot(killers_victims, aes(victims_proven, percentage, fill = sex)) + 
   geom_histogram(stat = "identity", color = "black") +
   labs(x = "Number of victims", y = "Count", title = "Number of victims by sex", subtitle = "Serial killers worldwide") +
   ylim(0, 50) + xlim(0, 150)
+
+# Number of victims by killer
+killers_victims_name <- killers[order(-killers$victims_proven), ]
+killers_victims_name <- killers_victims_name[1:10, c("name", "sex", "victims_proven")]
+
+# Plot most productive serial killers (top 10)
+ggplot(killers_victims_name, aes(name, victims_proven)) + 
+  geom_bar(stat = "identity", color = "red", fill = "black") +
+  labs(x = "Name", y = "Victim cound", title = "Most productive serial killers", subtitle = "Top 10 international serial killers") +
+  ylim(0, 250)
+
+# Plot most productive serial killers (top 10) by sex
+ggplot(killers_victims_name, aes(name, victims_proven, fill = sex)) + 
+  geom_bar(stat = "identity", color = "black") +
+  labs(x = "Name", y = "Victim count", title = "Most productive serial killers by sex", subtitle = "Top 10 international serial killers") +
+  ylim(0, 250)
 
 
 #---------------#
