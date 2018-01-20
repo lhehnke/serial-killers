@@ -149,7 +149,7 @@ killers <- killers[order(killers$name), ]
 #-------------------#
 
 # Google Maps key
-apiKey <- "AIzaSyDsSac4o7gNpwCsMyNycGZOdmsfys4fo2E" # [INSERT OWN KEY HERE]
+apiKey <- "[INSERT OWN KEY HERE]" 
 
 # Adapted function to extract coordinates
 getGeoCoord <- function(loc, apiKey) {
