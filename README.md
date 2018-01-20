@@ -26,7 +26,7 @@ The script covers
 * visualizing the killers' number of victims and sex with *ggplot2*
 * mapping the killers' locations as both points and polygons with *leaflet* and *ggplot2*
   
-using the abovementioned data on N = 576 serial killers.  
+using the abovementioned data set on N = 576 serial killers.  
 
 ## Description: Serial_killers_US
 
