@@ -1,5 +1,5 @@
 # serial-killers
-Data on both male and female international serial killers and scripts for scraping, wrangling, and analyzing data on serial killers
+Project killR: Data on both male and female international serial killers and scripts for scraping, wrangling, and analyzing data on serial killers
 
 ## Description: serial_killers_data
 
