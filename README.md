@@ -19,7 +19,7 @@ Data source: https://de.wikipedia.org/wiki/Liste_von_Serienmördern#Serienmörde
 
 The script covers
 
-* scraping wikipedia tables containing information on international serial killers
+* scraping Wikipedia tables containing information on international serial killers
 * wrangling scraped data
 * geocoding the killers' locations by country using Google Maps API
 * identifying the most deadly international serial killers
@@ -32,11 +32,11 @@ using the abovementioned data set on N = 576 serial killers.
 
 The script covers
 
-* scraping a wikipedia table containing information on US serial killers
+* scraping a Wikipedia table containing information on US serial killers
 * wrangling scraped data
-* scraping a wikipedia table containing US states and extracting information on the killers' location from strings
+* scraping a Wikipedia table containing US states and extracting information on the killers' location from strings
 * predicting the killers' sex based on their given names using *gender* and *genderdata*
-* scraping a wikipedia table containing causes of death and extracting information on the killers' causes of death from strings
+* scraping a Wikipedia table containing causes of death and extracting information on the killers' causes of death from strings
 * visualizing the killers' causes of death, number of victims, and sex with *ggplot2* 
 * mapping the killers' locations with *ggplot2*
 
