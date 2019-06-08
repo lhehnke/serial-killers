@@ -7,7 +7,7 @@
 Contains the following scraped data on both male and female international serial killers (N = 576):
 
 * name (full, given, and surnames)
-* pseudonym *(note: pseudonyms are partly in German)*
+* pseudonym *(note: pseudonyms are partially in German)*
 * country
 * sex
 * victims (proven, suspected)
