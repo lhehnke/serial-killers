@@ -22,8 +22,6 @@ The script covers
 * scraping Wikipedia tables containing information on international serial killers
 * wrangling scraped data
 * geocoding the killers' locations by country using Google Maps API
-* identifying the most deadly international serial killers
-* visualizing the killers' number of victims and sex with *ggplot2*
 * mapping the killers' locations as both points and polygons with *leaflet* and *ggplot2*
   
 using the abovementioned data set on N = 576 serial killers.  
