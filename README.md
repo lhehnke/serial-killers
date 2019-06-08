@@ -1,5 +1,6 @@
 # serial-killers
-Project killR: Data on both male and female international serial killers and scripts for scraping, wrangling, and analyzing data on serial killers
+
+**Project killR:** Data on both male and female international serial killers and scripts for scraping, preprocessing, and analyzing data on serial killers.
 
 ## Description: serial_killers_data
 
@@ -32,7 +33,7 @@ The script covers
 
 * scraping a Wikipedia table containing information on US serial killers
 * wrangling scraped data
-* scraping a Wikipedia table containing US states and extracting information on the killers' location from strings
+* scraping a Wikipedia table containing US states and extracting information on the killers' locations from strings
 * predicting the killers' sex based on their given names using *gender* and *genderdata*
 * scraping a Wikipedia table containing causes of death and extracting information on the killers' causes of death from strings
 * visualizing the killers' causes of death, number of victims, and sex with *ggplot2* 
