@@ -7,7 +7,7 @@
 
 ## Data source: https://de.wikipedia.org/wiki/Liste_von_Serienmördern#Serienmörder-Paare/Gruppen
 
-## Note: Killers' pseudonyms are partly in German in the final data set. 
+## Note: Killers' pseudonyms are partially in German in the final data set. 
 
 
 #-------#
@@ -22,9 +22,9 @@ library(pacman)
 p_load(dplyr, geosphere, ggplot2, jsonlite, leaflet, maptools, raster, reshape2, rvest, stringr, tidyr)
 
 
-#----------------------#
-# Scrape data from web #
-#----------------------#
+#----------------------------#
+# Scrape data from Wikipedia #
+#----------------------------#
 
 # Scrape wikipedia tables on male and female serial killers
 url <- "https://de.wikipedia.org/wiki/Liste_von_Serienmördern#Serienmörder-Paare/Gruppen"
@@ -181,66 +181,6 @@ names(killers)[names(killers) == "lngcountry"] <- "country_long"
 saveRDS(killers, "serial_killers_data.rds")
 
 
-#-----------------------------#
-# Visualize number of victims #
-#-----------------------------#
-
-# Transform to numeric and remove NAs
-killers$victims_proven <- as.numeric(killers$victims_proven)
-killers_victims <- killers %>% drop_na(victims_proven)
-
-# Number of victims by sex
-killers_victims <- killers %>% 
-  group_by(sex, victims_proven) %>% 
-  tally() %>% 
-  complete(victims_proven, fill = list(n = 0)) %>% 
-  mutate(percentage = n / sum(n) * 100)
-
-# Remove NAs
-killers_victims %<>% drop_na(sex)
-
-# Plot number of victims
-ggplot(killers_victims, aes(victims_proven, percentage)) + 
-  geom_bar(stat = "identity", color = "red", fill = "black") +
-  labs(x = "Number of victims", y = "Count", title = "Number of victims", subtitle = "Serial killers worldwide") +
-  ylim(0, 30) + xlim(0, 150)
-
-# Plot number of victims by killers' sex
-ggplot(killers_victims, aes(victims_proven, percentage, fill = sex)) + 
-  geom_histogram(stat = "identity", color = "black") +
-  labs(x = "Number of victims", y = "Count", title = "Number of victims by sex", subtitle = "Serial killers worldwide") +
-  ylim(0, 50) + xlim(0, 150)
-
-# Number of victims by killer
-killers_victims_name <- killers[order(-killers$victims_proven), ]
-killers_victims_name <- killers_victims_name[1:10, c("name", "sex", "victims_proven")]
-
-# Plot most productive serial killers (top 10)
-ggplot(killers_victims_name, aes(name, victims_proven)) + 
-  geom_bar(stat = "identity", color = "red", fill = "black") +
-  labs(x = "Name", y = "Victim cound", title = "Most productive serial killers", subtitle = "Top 10 international serial killers") +
-  ylim(0, 250)
-
-# Plot most productive serial killers (top 10) by sex
-ggplot(killers_victims_name, aes(name, victims_proven, fill = sex)) + 
-  geom_bar(stat = "identity", color = "black") +
-  labs(x = "Name", y = "Victim count", title = "Most productive serial killers by sex", subtitle = "Top 10 international serial killers") +
-  ylim(0, 250)
-
-
-#---------------#
-# Visualize sex #
-#---------------#
-
-# Count number of killers by sex
-counts <- data.frame(table(killers$sex))
-
-# Plot killers by sex
-ggplot(counts, aes(Var1, Freq)) + 
-  geom_bar(stat = "identity", color = "red", fill = "black", width = 0.5) +
-  labs(x = "Sex", y = "Count", title = "Number of killers by sex", subtitle = "Serial killers worldwide")
-
-
 #---------------------------------#
 # Mapping locations using leaflet #
 #---------------------------------#
@@ -273,17 +213,7 @@ unlink(temp)
 # Remove Antarctica
 world_shp <- subset(world_shp, NAME != "Antarctica")
 
-# Plot locations of killers as points
-## Note: Locations overlap due to geocoding by country. 
-ggplot() + 
-  geom_polygon(data = world_shp, aes(x = long, y = lat, group = group)) +
-  geom_point(data = killers, aes(x = country_long, y = country_lat), size = 1.2, color = "red") +
-  labs(x = "", y = "") +
-  theme(axis.text.x = element_blank(), axis.text.y = element_blank(), axis.ticks = element_blank(),
-        panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank()) +
-  coord_equal()
-
-# Plot locations of killers as polygons
+# Plot locations of killers
 country_list <- as.list(unique(killers[, "country"]))
 killers_shp <- subset(world_shp, NAME %in% country_list) 
 
