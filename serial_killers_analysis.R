@@ -5,7 +5,7 @@
 
 ## R version 3.3.1 (2016-06-21)
 
-## Data source: https://de.wikipedia.org/wiki/Liste_von_Serienmördern#Serienmörder-Paare/Gruppen
+## Data source: https://de.wikipedia.org/wiki/Liste_von_Serienmördern
 
 ## Note: Killers' pseudonyms are partially in German in the final data set. 
 
@@ -27,7 +27,7 @@ p_load(dplyr, geosphere, ggplot2, jsonlite, leaflet, maptools, raster, reshape2,
 #----------------------------#
 
 # Scrape wikipedia tables on male and female serial killers
-url <- "https://de.wikipedia.org/wiki/Liste_von_Serienmördern#Serienmörder-Paare/Gruppen"
+url <- "https://de.wikipedia.org/wiki/Liste_von_Serienmördern"
 
 male <- url %>% read_html() %>% 
   html_nodes(xpath = "/html/body/div[3]/div[3]/div[4]/div/table[1]") %>% 
