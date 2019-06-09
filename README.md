@@ -14,7 +14,7 @@ Contains the following scraped data on both male and female international serial
 * years active (active from-to, active from, active to)
 * geocoded country locations (longitude, latitude)
 
-Data source: https://de.wikipedia.org/wiki/Liste_von_Serienmördern#Serienmörder-Paare/Gruppen
+Data source: https://de.wikipedia.org/wiki/Liste_von_Serienmördern
 
 ## Description: serial_killers_analysis
 
