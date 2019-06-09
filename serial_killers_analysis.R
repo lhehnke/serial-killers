@@ -113,7 +113,7 @@ killers %<>%
   mutate(years_active = gsub("er", "s", years_active))
 
 # Clean victims_proven
-## Note: Code transform "[number of victims]+" to "[number of victims]". 
+## Note: Code transforms "[number of victims]+" to "[number of victims]". 
 killers %<>% 
   mutate(victims_proven = gsub("\\[.*?\\]", "", victims_proven)) %>%
   mutate(victims_proven = gsub("[^0-9\\-]", "", victims_proven)) 
